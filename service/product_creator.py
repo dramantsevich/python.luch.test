@@ -1,6 +1,10 @@
 from model.product import Product
 
 
+def product_from_catalog_page():
+    product = Product("", 0, 0)
+    return product
+
+
 class ProductCreator:
-    def product_from_catalog_page(self):
-        return Product(None, 0, 0)
+    pass

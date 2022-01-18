@@ -1,7 +1,9 @@
+import re
+
 from playwright.sync_api import Page
 
 from model.product import Product
-from service.product_creator import ProductCreator
+from service.product_creator import ProductCreator, product_from_catalog_page
 
 
 class CatalogPage:
@@ -15,24 +17,52 @@ class CatalogPage:
 
     def click_sort_by_name(self, sort_name: str):
         self.page.click(f"text={sort_name}")
+        self.page.wait_for_load_state()
 
-    # def get_list_products(self):
-    #     products_list = self.create_list_products
-    #     index = 0
-    #
-    #     for product in products_list:
-    #
-    #
-    #
-    # def create_list_products(self):
-    #     products_list = []
-    #
-    #     for item in self.page.query_selector_all("//div[@class='item']"):
-    #         product = ProductCreator.product_from_catalog_page()
-    #
-    #         products_list.append(product)
-    #
-    #     return products_list
-    #
-    # def set_product_name(self, product: Product, index: int):
-    #     name = self.page.query_selector_all("//a/div/div/div[@class='name']").index(index)
+    def create_list_products(self):
+        productsList = list()
+
+        for element in self.page.query_selector_all(".item"):
+            product = product_from_catalog_page()
+
+            productsList.append(product)
+
+        return productsList
+
+    def set_product_name(self, product: Product, index: int):
+        listName = self.page.query_selector_all("//a/div/div/div[@class='name']")
+        tempIndex = 0
+
+        for name in listName:
+            if tempIndex == index:
+                product.set_name(name.inner_text())
+                break
+
+            tempIndex += 1
+
+        return product
+
+    def set_product_price(self, product: Product, index: int):
+        listPrice = self.page.query_selector_all("//a/div/div/div/div/div[@class='price']/span")
+        tempIndex = 0
+        productPrice: str
+
+        for price in listPrice:
+            if tempIndex == index:
+                productPrice = price.inner_text().replace("\\s+", "")
+                pattern = re.compile("[^mr][\\d]+")
+                res = pattern.findall(productPrice)
+
+                product.set_price(res[0])
+                break
+
+            tempIndex += 1
+
+        return product
+
+    def click_filter_by_name(self, filterName: str):
+        self.page.click("label:has-text('" + filterName + "')")
+        self.page.wait_for_load_state()
+
+    def click_more_info_of_product(self):
+        self.page.click("text=More info")
