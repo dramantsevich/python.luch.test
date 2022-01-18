@@ -1,9 +1,19 @@
-__pycache__
-.pytest_cache
-assets
-venv
-.playwright-screenshots
-
 # Idea
 .idea/
 *.iml
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+#folders
+.idea/
+.pytest_chache/
+
+# reporting
+report/
+report.xml
+
+# logs
+*.log
