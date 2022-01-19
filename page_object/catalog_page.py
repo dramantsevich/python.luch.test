@@ -16,8 +16,8 @@ class CatalogPage:
         self.page.click("text=Sort")
 
     def click_sort_by_name(self, sort_name: str):
-        self.page.click(f"text={sort_name}")
-        self.page.wait_for_load_state()
+        with self.page.expect_navigation(wait_until='load'):
+            self.page.click(f"text={sort_name}")
 
     def create_list_products(self):
         productsList = list()
@@ -61,8 +61,8 @@ class CatalogPage:
         return product
 
     def click_filter_by_name(self, filterName: str):
-        self.page.click("label:has-text('" + filterName + "')")
-        self.page.wait_for_load_state()
+        with self.page.expect_navigation(wait_until='load'):
+            self.page.click("label:has-text('" + filterName + "')")
 
     def click_more_info_of_product(self):
         self.page.click("text=More info")
