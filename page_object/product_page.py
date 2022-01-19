@@ -6,6 +6,9 @@ class ProductPage:
     def __init__(self, page: Page):
         self.page = page
 
+    def get_current_url(self):
+        return self.page.url
+
     def get_product_type(self):
         return self.page.inner_text("//div[@class='prop-title' and contains(text(),'Product type')]/following-sibling::div[@class='prop-value']/a")
 
