@@ -18,6 +18,7 @@ accessories_color_type = {
     'ids': ['test with Green product color type', 'test with Marsal product color type']
 }
 
+
 class TestAccessories:
     @mark.parametrize(**ddt)
     def test_check_sort_first_popular(self, app, sort_name):
@@ -33,10 +34,7 @@ class TestAccessories:
         app.catalog_page.click_filter_by_name(product_type)
         app.catalog_page.click_more_info_of_product()
 
-        expected = product_type
-        actual = app.product_page.get_product_type()
-
-        assert expected in actual, 'correct accessories product type'
+        assert product_type in app.product_page.get_product_type(), 'correct accessories product type'
 
     @mark.parametrize(**accessories_color_type)
     def test_check_correct_accessories_color(self, app, product_color_type):
