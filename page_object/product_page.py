@@ -11,3 +11,9 @@ class ProductPage:
 
     def get_product_color_type(self):
         return self.page.inner_text("//div[@class='prop-title' and contains(text(),'Colour')]/following-sibling::div[@class='prop-value']/a")
+
+    def get_product_gender_type(self):
+        return self.page.inner_text("//div[@class='prop-title' and contains(text(),'Type')]/following-sibling::div[@class='prop-value']/a")
+
+    def get_product_movement_type(self):
+        return self.page.inner_text("//div[@class='prop-title' and contains(text(),'Movement')]/following-sibling::div[@class='prop-value']/a")
