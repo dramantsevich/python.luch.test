@@ -42,6 +42,19 @@ class CatalogPage:
 
         return product
 
+    def set_product_article(self, product: Product, index: int):
+        listArticle = self.page.query_selector_all("//a/div/div/div[@class='article']")
+        tempIndex = 0
+
+        for article in listArticle:
+            if tempIndex == index:
+                product.set_article(int(article.inner_text()))
+                break
+
+            tempIndex += 1
+
+        return product
+
     def set_product_price(self, product: Product, index: int):
         listPrice = self.page.query_selector_all("//a/div/div/div/div/div[@class='price']/span")
         tempIndex = 0

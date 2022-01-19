@@ -1,8 +1,8 @@
 from playwright.sync_api import Browser
 from .cart_page import CartPage
-from page_object.catalog_page import CatalogPage
-from .catalog_accessories_page import CatalogAccessoriesPage
-from .catalog_watches_page import CatalogWatchesPage
+from page_object.catalog.catalog_page import CatalogPage
+from page_object.catalog.catalog_accessories_page import CatalogAccessoriesPage
+from page_object.catalog.catalog_watches_page import CatalogWatchesPage
 from .order_page import OrderPage
 from .product_page import ProductPage
 

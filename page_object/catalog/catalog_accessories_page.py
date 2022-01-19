@@ -1,6 +1,6 @@
 from playwright.sync_api import Page
 
-from page_object.catalog_page import CatalogPage
+from page_object.catalog.catalog_page import CatalogPage
 
 
 class CatalogAccessoriesPage(CatalogPage):
