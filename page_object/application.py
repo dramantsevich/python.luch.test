@@ -3,6 +3,7 @@ from .cart_page import CartPage
 from page_object.catalog.catalog_page import CatalogPage
 from page_object.catalog.catalog_accessories_page import CatalogAccessoriesPage
 from page_object.catalog.catalog_watches_page import CatalogWatchesPage
+from .main_page import MainPage
 from .order_page import OrderPage
 from .product_page import ProductPage
 
@@ -19,6 +20,7 @@ class App:
         self.catalog_accessories_page = CatalogAccessoriesPage(self.page)
         self.product_page = ProductPage(self.page)
         self.catalog_watches_page = CatalogWatchesPage(self.page)
+        self.main_page = MainPage(self.page)
 
     def goto(self, endpoint: str, use_base_url=True):
         if use_base_url:
