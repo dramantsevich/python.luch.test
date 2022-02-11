@@ -22,6 +22,11 @@ Tools:
   - settings.py
 
 ##Run guide
+Command to run from terminal: 
+```python
+pytest 
+```
+
 If you want to run tests in 3 browsers then fill in the parameters in fixture get_browser of the conftest.py file as follows:
 ```python
 @fixture(scope='session', params=['chromium', 'firefox', 'webkit'], ids=['chromium', 'firefox', 'webkit'])
