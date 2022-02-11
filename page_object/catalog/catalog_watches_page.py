@@ -3,6 +3,10 @@ from playwright.sync_api import Page
 from page_object.catalog.catalog_page import CatalogPage
 
 
+class LocatorsCatalogWatchesPage:
+    DROP_TYPE_FILTER = "text=Type >> div"
+
+
 class CatalogWatchesPage(CatalogPage):
     WATCHES_URL = "/en/watches"
     HIGHEST_FIRST_URL = "/watches/?sort=PRICE&order=asc"
@@ -11,7 +15,7 @@ class CatalogWatchesPage(CatalogPage):
         self.page = page
 
     def drop_type_filter(self):
-        self.page.click("text=Type >> div")
+        self.page.click(LocatorsCatalogWatchesPage.DROP_TYPE_FILTER)
 
     def get_list_products(self):
         productList = self.create_list_products()
